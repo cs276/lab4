@@ -43,7 +43,7 @@ app.use(expressVueMiddleware);
 // List galleries
 app.get('/', (req, res) => {
     let galleries = ['Gallery A', 'Gallery B', 'Gallery C'];
-    res.renderVue('index.vue', {galleries: galleries});
+    res.renderVue('index.vue', {galleries});
 });
 
 // List objects
