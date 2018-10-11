@@ -42,7 +42,7 @@ app.use(expressVueMiddleware);
 
 // List galleries
 app.get('/', (req, res) => {
-    let galleries = [];
+    let galleries = ['Gallery A', 'Gallery B', 'Gallery C'];
     res.renderVue('index.vue', {galleries: galleries});
 });
 
