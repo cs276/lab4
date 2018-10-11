@@ -6,15 +6,12 @@ require('cross-fetch/polyfill');
 const hostname = '127.0.0.1';
 const port = 3000;
 
+// Initialize Express
 const app = express();
 app.use(express.static('static'));
 
+// Options for express-vue
 const vueOptions = {
-
-  // Views root
-  rootPath: path.join(__dirname, '/views'),
-
-  // Customize layout
   head: {
     title: 'Harvard Art Museums',
     metas: [
@@ -34,37 +31,35 @@ const vueOptions = {
         style: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'
       }
     ]
-  }
+  },
+  rootPath: path.join(__dirname, '/views')
 };
 
 
-// Initialize express vue
+// Initialize express-vue
 const expressVueMiddleware = expressVue.init(vueOptions);
 app.use(expressVueMiddleware);
 
-const API_KEY = '43a19a70-b76e-11e8-bf0e-e9322ccde4db';
-const comments = {};
-
-// Proxy to Harvard Art Museums API
-function proxy(endpoint, params={}) {
-    // TODO
-}
-
-
 // List galleries
 app.get('/', (req, res) => {
-    res.renderVue('index.vue', {title: 'Gallery Listing'});
+    let galleries = [];
+    res.renderVue('index.vue', {galleries: galleries});
 });
 
+// List objects
+app.get('/gallery/:gallery_id', (req, res) => {
+    // TODO
+});
 
-// TODO /gallery/:gallery_id
+// Show object
+app.get('/objects/:object_id', (req, res) => {
+    // TODO
+});
 
-
-// TODO /object/:object_id
-
-
-// TODO /object/:object_id/comment
-
+// Comment on object
+app.get('/objects/:object_id/comment', (req, res) => {
+    // TODO
+});
 
 // Listen on socket
 app.listen(port, hostname, () => {
